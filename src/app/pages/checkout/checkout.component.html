@@ -1,0 +1,86 @@
+<!-- Formulario Templet driven form-->
+ <div class="container">
+    <form class="form" #checkoutForm="ngForm">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" placeholder="nombre..." required [(ngModel)]="model.name"
+                name="name" #name="ngModel">
+            <mat-error *ngIf="!name.valid || name.pristine">Name is required</mat-error>
+        </div>
+        {{isDelivery}} - isDelivery?
+        <mat-radio-group class="form__element">
+            <p>Choose an option:</p>
+            <mat-radio-button value="pickup" (change)="onPickupOrDelivery(false)">Pickup</mat-radio-button>
+            <mat-radio-button value="delivey" (change)="onPickupOrDelivery(true)" checked>Delivery</mat-radio-button>
+        </mat-radio-group>
+        <ng-container *ngIf="isDelivery; else showStores">
+            <div class="mb-3">
+                <label for="shippingAddress" class="form-label">Shipping Address</label>
+                <input class="form-control" placeholder="Shipping Address" required [(ngModel)]="model.shippingAddress"
+                    name="shippingAddress" #shippingAddress="ngModel">
+                <mat-error *ngIf="!shippingAddress.valid || shippingAddress.pristine">Shipping Address is required
+                </mat-error>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input class="form-control" placeholder="City" required [(ngModel)]="model.city" name="city"
+                    #city="ngModel">
+                <mat-error *ngIf="!city.valid || city.pristine">City is required</mat-error>
+            </div>
+        </ng-container>
+        <ng-template #showStores>
+            <p>Store</p>
+            <select class="form-select" name="store" #store="ngModel" [(ngModel)]="model.store">
+                <option selected>Open this select menu</option>
+                <option value="tienda" *ngFor="let tienda of stores">{{tienda.name}} - {{tienda.openingHours}}</option>
+            </select>
+        </ng-template>
+    </form>
+</div> 
+<!--
+ <div class="container">
+    <form class="form item"  #checkoutForm="ngForm">
+        <mat-form-field class="form__element">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="nombre..." required [(ngModel)]="model.name" name="name" #name="ngModel">
+            <mat-error *ngIf="!name.valid || name.pristine">Name is required</mat-error>
+        </mat-form-field>
+        {{isDelivery}} - isDelivery?
+        <mat-radio-group class="form__element">
+            <p>Choose an option:</p>
+            <mat-radio-button value="pickup" (change)="onPickupOrDelivery(false)">Pickup</mat-radio-button>
+            <mat-radio-button value="delivey" (change)="onPickupOrDelivery(true)" checked>Delivery</mat-radio-button>
+        </mat-radio-group>
+        <ng-container *ngIf="isDelivery; else showStores">
+            <mat-form-field class="form__element">
+                <input matInput placeholder="Shipping Address" required [(ngModel)]="model.shippingAddress"
+                    name="shippingAddress" #shippingAddress="ngModel">
+                <mat-error *ngIf="!shippingAddress.valid || shippingAddress.pristine">Shipping Address is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form__element">
+                <input matInput placeholder="City" required [(ngModel)]="model.city" name="city" #city="ngModel">
+                <mat-error *ngIf="!city.valid || city.pristine">City is required</mat-error>
+            </mat-form-field>
+        </ng-container>
+        <ng-template #showStores>
+            <mat-form-field class="select form__element">
+                <mat-label>Select me</mat-label>
+                <mat-select name="store" #store="ngModel" [(ngModel)]="model.store">
+                    <mat-option color="primary" value="tienda" *ngFor="let tienda of stores">
+                        {{tienda.name}} - {{tienda.openingHours}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </ng-template>
+
+    </form>
+</div>
+-->
+<div class="container__button">
+    <button [disabled]="!checkoutForm.form.valid" (click)="onSubmit(checkoutForm)" mat-raised-button color="primary"
+        type="submit">Checkouk</button>
+</div>
+<br>
+<app-details></app-details>
+<br>

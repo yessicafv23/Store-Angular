@@ -1,0 +1,21 @@
+.container{
+    margin: 0 4%;
+
+    .table{
+        font-size: 18px;
+        th, td{
+            text-align: center;
+        }
+    }
+
+    .container__total{
+        margin: 1rem;
+        .total{
+            color: #181818;
+            font-size: 18px;
+            text-align: right;
+        }
+    }
+
+}
+

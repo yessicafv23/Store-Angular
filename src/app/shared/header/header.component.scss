@@ -1,0 +1,16 @@
+.spacer{
+    flex: 1 1 auto;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+}
+
+.mouseHover:hover{
+    background-color: #f9f9f9;
+    color: black;
+    cursor: pointer;
+    transition: all 0.7 ease-in-out;
+}

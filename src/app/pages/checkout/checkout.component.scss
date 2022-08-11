@@ -1,0 +1,22 @@
+.container{
+    width: 500px;
+    margin: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .form{
+        width: 500px;
+    }
+}
+.container__button{
+    margin: 0 auto;
+    display: block;
+    width: 20%;
+    margin-top: 4rem;
+
+
+    .button{
+        width: 100%;
+    }
+}
